@@ -7,5 +7,4 @@ const UpdateListing = () => {
     </div>
   )
 }
-
 export default UpdateListing;
