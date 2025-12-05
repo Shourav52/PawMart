@@ -65,8 +65,8 @@ const Footer = () => {
             </a>
           </div>
           </div>
-          <div className='flex flex-col gap-2 mt-4 cursor-pointer text-lg ml-4'>
-            <li><a href="">Home</a></li>
+          <div className='flex flex-col gap-2 mt-4 cursor-pointer text-[16px] ml-4'>
+            <Link to={"/"}><li><a href="">Home</a></li></Link>
             <li><a href="">Contact</a></li>
             <li><a href="">Terms</a></li>
           </div>

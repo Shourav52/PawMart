@@ -41,9 +41,10 @@ const PetsSupplies = () => {
                 <h2 className="card-title">{services?.name}</h2>
                 <div className='flex justify-between text-gray-600 font-semibold'>
                     <p>Price: {services?.price}</p>
-                    <p>Category: {services?.category}</p>
+                    <p>Location: {services?.location}</p>
                 </div>
-                <div className="card-actions ">
+                <p>Category: {services?.category}</p>
+                <div className="card-actions justify-end">
                 <Link to={`/details/${services._id}`} ><button className="btn btn-primary w-full">View Details</button></Link>
                 </div>
             </div>
