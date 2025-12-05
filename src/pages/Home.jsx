@@ -7,6 +7,10 @@ import TipsSection from '../compunents/TipsSection';
 const Home = () => {
   return (
     <div>
+      <Slider></Slider>
+      <PopularSection></PopularSection>
+      <TipsSection></TipsSection>
+      <ExpartSection></ExpartSection>
     </div>
   )
 }
