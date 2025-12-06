@@ -91,15 +91,15 @@ const MyListing = () => {
               </div>
             </div>
             <div>
-              <div className="font-bold text-black">{service?.name}</div>
+              <div className="font-bold text-gray-500">{service?.name}</div>
               
             </div>
           </div>
         </td>
         <td>
-            <div className="text-sm text-black opacity-50">{service?.category}</div>  
+            <div className="text-sm text-gray-500 opacity-80">{service?.category}</div>  
         </td>
-        <td className='text-black'><p>{service?.price}</p></td>
+        <td className='text-gray-500'><p>{service?.price}</p></td>
         <th className='flex gap-3 mt-6'>
           <button onClick={()=>handleDelete(service._id)} className="btn btn-error btn-xs mb-2">Delete</button>
          <Link to={`/update-listing/${service?._id}`}>

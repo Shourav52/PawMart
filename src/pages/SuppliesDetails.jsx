@@ -58,18 +58,18 @@ const SuppliesDetails = () => {
     <div className='flex flex-col items-center mt-10 justify-center'>
         <h1 className=' text-3xl font-semibold mb-5'>Service details</h1>
       <div className="space-y-2 p-10 rounded-2xl">
-         <div className="max-w-[700px] bg-white p-5 rounded-lg shadow-md">
+         <div className="max-w-[700px] bg-white p-5 rounded-lg shadow-md  ">
           <img className='w-full rounded-md ' src={service?.image} alt="" />
-        <h2 className="text-xl font-semibold"> Name: {service?.name}</h2>
-        <p className="text-sm text-gray-500">Category: {service?.category}</p>
-        <p>Owner’s Email: {service?.email}</p>
-        <p className="text-gray-600 text-sm"> Description: {service?.description}</p>
+        <h2 className="text-xl mt-8 font-semibold text-gray-700"> Name: {service?.name}</h2>
+        <p className="text-lg mt-2 font-semibold text-gray-700">Category: {service?.category}</p>
+        <p className='text-lg mt-2 font-semibold text-gray-700'>Owner’s Email: {service?.email}</p>
+        <p className="text-lg mt-2 font-semibold text-gray-700"> Description: {service?.description}</p>
 
       <div className="flex items-center justify-between mt-3">
-        <span className="text-lg font-semibold">Price: ${service?.price}</span>
+        <span className="text-lg text-gray-700 font-semibold">Price: ${service?.price}</span>
         <span className=" flex gap-1 items-center text-sm text-yellow-600 font-medium">Date: {service?.date}</span>
         </div>
-      <div className="text-sm text-gray-500 mt-1">
+      <div className="text-[18px] mt-2 font-semibold text-gray-700">
         Location: <span className="font-medium">{service?.location}</span>
         </div>
           <div className='flex justify-center place-items-center gap-2 my-4'>

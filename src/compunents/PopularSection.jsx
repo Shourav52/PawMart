@@ -48,13 +48,13 @@ const PopularSection = () => {
                 src={services?.image}
                 alt="Shoes" />
             </figure>
-            <div className="card-body space-y-2">
-                <h2 className="card-title">{services?.name}</h2>
-                <div className='flex justify-between text-gray-600'>
+            <div className="card-body">
+                <h2 className="card-title font-bold text-gray-950">{services?.name}</h2>
+                <div className='flex justify-between text-[16px] text-gray-600 font-semibold'>
                     <p >Price: {services?.price}</p>
                     <p>Location: {services?.location}</p>
                 </div>
-                <p className='text-gray-600'>Category: {services?.category}</p>
+                <p className='text-gray-600 text-[16px] font-semibold'>Category: {services?.category}</p>
                 
                 <div className="card-actions justify-end">
                 <Link to={`/details/${services._id}`} ><button className="btn btn-primary w-full">View Details</button></Link>
