@@ -7,13 +7,18 @@ import { FaDownload } from "react-icons/fa";
 
 const MyOrders = () => {
   const [myOrders, setMyOrders] = useState([])
-
+   const [loading, setLoading] = useState(false);
   useEffect(() => {
+    setLoading(true);
     axios.get('http://localhost:3000/orders')
       .then(res => {
-        setMyOrders(res.data)
+        setMyOrders(res.data);
+        setLoading(false);
       })
-      .catch(err => console.log(err))
+      .catch(err =>{
+         console.log(err);
+         setLoading(false);
+      })
   }, [])
   console.log(myOrders);
   
@@ -44,8 +49,12 @@ const handleDownloadPDF = () => {
     <div className='mb-80'>
       <MyContainer>
         <div className="overflow-x-auto ">
-
-        <table className="table table-xs ">
+         {loading ? (
+          <div className='flex justify-center items-center h-64'>
+            <span className="loading loading-spinner loading-xl"></span>
+          </div>
+        ) : (
+           <table className="table table-xs ">
           <thead className='bg-gray-400'>
             <tr className='text-black'>
               <th>Order No</th>
@@ -83,6 +92,8 @@ const handleDownloadPDF = () => {
             }
           </tbody>
         </table>
+        )}
+       
         <div className='flex justify-center'>
           <button
           onClick={handleDownloadPDF}

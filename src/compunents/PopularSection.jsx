@@ -5,21 +5,28 @@ const PopularSection = () => {
 
   const [services, setServices] = useState([]);
   const [category, setCategory] = useState('');
+  const [loading, setLoading] = useState(false);
+
   
   useEffect(()=>{
+        setLoading(true);
         fetch(`http://localhost:3000/services?category=${category}`)
         .then(res=>res.json())
-        .then(data => setServices(data))
-        .catch(err=>console.log(err))
+        .then(data =>{setServices(data); setLoading(false)} )
+        .catch(err=>{console.log(err);setLoading(false);})
       },[category])
       console.log(category);
 
   return (
+  
     <div className='mt-4'>
         <div className='mb-4'>
             <h3 className='bg-gradient-to-r from-blue-500 to-indigo-600 bg-clip-text text-transparent font-semibold text-3xl text-center '>Pet Care Services</h3>
         </div>
-       <MyContainer>
+          {loading ? (<div className='flex justify-center items-center h-64'>
+            <span className="loading loading-spinner loading-xl"></span>
+          </div>) :(
+           <MyContainer>
         <div className='mt-8'>
           <h3 className='font-semibold text-gray-500'>Select your Cetegory</h3>
           <select  onChange={(e)=>setCategory(e.target.value)}
@@ -59,9 +66,10 @@ const PopularSection = () => {
       </div>
        </MyContainer>
      
+    )}
+      
       
     </div>
-  )
-}
+  )}
 
 export default PopularSection;

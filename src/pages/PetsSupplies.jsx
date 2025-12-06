@@ -7,11 +7,18 @@ import { Link } from 'react-router';
 const PetsSupplies = () => {
   const [services, setServices] = useState([]);
   const [category, setCategory] = useState('');
+  const [loading, setLoading] = useState(false);
     useEffect(()=>{
+      setLoading(true);
       fetch(`http://localhost:3000/services?category=${category}`)
       .then(res=>res.json())
-      .then(data => setServices(data))
-      .catch(err=>console.log(err))
+      .then(data => {
+        setServices(data);
+        setLoading(false);
+      })
+      .catch(err=>{
+        console.log(err); 
+        setLoading(false);})
     },[category])
     console.log(category);
   return (
@@ -27,7 +34,11 @@ const PetsSupplies = () => {
             <option value="Accessories">Accessories</option>
             <option value="Care Product">Care Product</option>
           </select>
-              <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-5 gap-10 p-10 lg:p-0 mb-10'>
+          {loading ? (
+          <div className='flex justify-center items-center h-64'>
+            <span className="loading loading-spinner loading-xl"></span>
+          </div>
+        ) : (  <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-5 gap-10 p-10 lg:p-0 mb-10'>
           {
             services.map(services =>
               <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="card bg-base-100 shadow-sm w-full lg:w-[360px] bg-gradient-to-br from-blue-50 to-blue-100">
@@ -35,7 +46,7 @@ const PetsSupplies = () => {
             <figure>
                 <img className='w-full h-[300px] object-cover'
                 src={services?.image}
-                alt="Shoes" />
+                alt="" />
             </figure>
             <div className="card-body space-y-2">
                 <h2 className="card-title">{services?.name}</h2>
@@ -54,6 +65,8 @@ const PetsSupplies = () => {
             )
         }
       </div>
+    )}
+      
        </MyContainer>
     </div>
   )

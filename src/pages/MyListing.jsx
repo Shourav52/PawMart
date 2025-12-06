@@ -9,11 +9,19 @@ import MyContainer from '../compunents/MyContainer';
 const MyListing = () => {
   const [myservices, setMyServices] = useState([]);
   const { user } = useContext(AuthContext);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
+    setLoading(true);
     fetch(`http://localhost:3000/myservices?email=${user?.email}`)
       .then(res => res.json())
-      .then(data => setMyServices(data))
-      .catch(err => console.log(err))
+      .then(data => {
+        setMyServices(data);
+        setLoading(false);
+        
+  })
+      .catch(err => {
+        console.log(err);
+        setLoading(false);})
   }, [user?.email])
 
   console.log(myservices);
@@ -53,7 +61,11 @@ const MyListing = () => {
 
   return (
     <div className='mb-15'>
-      <MyContainer>
+      {loading ? (
+          <div className='flex justify-center items-center h-64'>
+            <span className="loading loading-spinner loading-xl"></span>
+          </div>
+        ) :(       <MyContainer>
       <div className="overflow-x-auto text-white">
   <table className="table">
     <thead className=''>
@@ -64,8 +76,9 @@ const MyListing = () => {
         <th>Action</th>
       </tr>
     </thead>
+    
     <tbody>
-       {
+       { 
         myservices?.map(service=>
      <tr >
       
@@ -99,7 +112,8 @@ const MyListing = () => {
     </tbody>
   </table>
 </div>
-</MyContainer>
+</MyContainer>)}
+
     </div>
   )
 }
