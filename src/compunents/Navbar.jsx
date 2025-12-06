@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import MyContainer from './MyContainer'
 import logo from '../assets/logo.jpeg'
 import { Link, NavLink } from 'react-router'
@@ -9,6 +9,14 @@ import auth from '../firebase/firebase.config'
 const Navbar = () => {
     const {user} = useContext(AuthContext)
     const [isChecked, setIsChecked] =useState(true);
+    const handleThemeChange =()=>{
+        setIsChecked(prev =>!prev);
+    }
+
+    useEffect(()=>{
+         const theme = isChecked ? 'light' : 'dark';
+         document.documentElement.setAttribute('data-theme',theme);
+    },[isChecked])
 
      const handleSignOut =()=>{
         signOut(auth)
@@ -35,9 +43,8 @@ const Navbar = () => {
                 <li>
                    <MyLink to={"/petsSupplies"}>Pets & Supplies</MyLink>
                 </li>
-                { user &&(<><li>
-                   <MyLink to={"/myProfile"}>MyProfile</MyLink>
-                </li>
+                { user &&(<>
+                
                 <li>
                     <MyLink to={"/add-listing"}>Add Listing</MyLink>
                 </li>
@@ -65,7 +72,8 @@ const Navbar = () => {
     <path
       d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
   </svg>
-  <input type="checkbox" value="synthwave" className="toggle theme-controller" />
+  <input type="checkbox" onClick={handleThemeChange}
+   value="synthwave" className="toggle theme-controller" />
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="20"
@@ -80,11 +88,19 @@ const Navbar = () => {
   </svg>
 </label>
             {
-                user &&  <div className='bg-white text-blue-500 px-4 py-2 rounded-lg font-semibold
+                user &&  (
+                    <div className=' flex items-center gap-3'>
+                        <Link to={'/myProfile'}>
+                        <img src={user?.photoURL} 
+                        className=' w-10 h-10 rounded-full border-2 border-white'
+                        alt="" /></Link>
+                        <div className='bg-white text-blue-500 px-4 py-2 rounded-lg font-semibold
          transition-all duration-150
          hover:bg-blue-100 hover:scale-105'>
                 <button className='cursor-pointer' onClick={handleSignOut}  >Logout</button>
             </div>
+                    </div>
+                )
             }
             {
                  !user &&  <div className='bg-white text-blue-500 px-4 py-2 rounded-lg font-semibold
