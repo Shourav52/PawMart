@@ -26,6 +26,52 @@ const Navbar = () => {
     <div className='bg-blue-500  text-white py-2 border-b' >
         <MyContainer className="flex items-center justify-between ">
             <div className='flex items-center justify-center gap-1.5'>
+                
+                <div className="dropdown md:hidden ">
+  {/* Dropdown toggle */}
+  <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-5 w-5"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M4 6h16M4 12h16M4 18h7"
+      />
+    </svg>
+  </div>
+  <ul
+    tabIndex={-1}
+    className="menu menu-sm dropdown-content bg-base-100 text-black rounded-box mt-3 w-52 p-2 shadow z-10"
+  >
+    <li>
+                    <MyLink to={"/"}>Home</MyLink>
+                </li>
+                <li>
+                   <MyLink to={"/petsSupplies"}>Pets & Supplies</MyLink>
+                </li>
+                { user &&(<>
+                
+                <li>
+                    <MyLink to={"/add-listing"}>Add Listing</MyLink>
+                </li>
+                 <li>
+                    <MyLink to={"/mylisting"}>My Listings</MyLink>
+                </li>
+                <li>
+                    <MyLink to={"/myorders"}>My Orders</MyLink>
+                </li>
+               </>)}
+  </ul>
+</div>
+
+
+
                 <figure>
                     <Link to={"/"}>
                 <img className='w-[50px] rounded-4xl' src={logo}  alt="" />
@@ -36,7 +82,7 @@ const Navbar = () => {
             </Link>
              
             </div>
-            <ul className={"flex items-center gap-2 text-md"}>
+            <ul className={"hidden md:flex items-center gap-2 text-md "}>
                 <li>
                     <MyLink to={"/"}>Home</MyLink>
                 </li>
