@@ -28,7 +28,7 @@ const SuppliesDetails = () => {
     const quantity = parseInt(form.quantity.value);
     const price = parseInt(form.price.value);
     const address = form.address.value;
-    const phoneNumber = percent.form.phoneNumber.value;
+    const phoneNumber = parseInt(form.phoneNumber.value); 
     const additonalNote = form.additonalNote.value;
 
     const formData = {
