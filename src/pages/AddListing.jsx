@@ -30,7 +30,7 @@ const AddListing = () => {
             email
         }
         console.log(formData);
-        axios.post('http://localhost:3000/services',formData)
+        axios.post('https://pawmarkt.vercel.app/services',formData)
         .then(res=>{
             console.log(res);
          if(res.data.acknowledged){

@@ -10,7 +10,7 @@ const MyOrders = () => {
    const [loading, setLoading] = useState(false);
   useEffect(() => {
     setLoading(true);
-    axios.get('http://localhost:3000/orders')
+    axios.get('https://pawmarkt.vercel.app/orders')
       .then(res => {
         setMyOrders(res.data);
         setLoading(false);

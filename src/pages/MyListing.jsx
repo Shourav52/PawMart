@@ -12,7 +12,7 @@ const MyListing = () => {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:3000/myservices?email=${user?.email}`)
+    fetch(`https://pawmarkt.vercel.app/myservices?email=${user?.email}`)
       .then(res => res.json())
       .then(data => {
         setMyServices(data);
@@ -37,7 +37,7 @@ const MyListing = () => {
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:3000/delete/${id}`)
+        axios.delete(`https://pawmarkt.vercel.app/delete/${id}`)
           .then(res => {
             console.log(res.data);
             if (res.data.deletedCount == 1) {
