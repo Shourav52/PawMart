@@ -1,17 +1,48 @@
-# React + Vite
+# 🐾 Paw Mart
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**MERN Stack E-commerce Website for Pet Products**
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🌟 Project Overview
+Paw Mart is a modern and responsive e-commerce platform built using the MERN stack (MongoDB, Express.js, React.js, Node.js).  
+It allows users to browse, search, and purchase pet products seamlessly. The project focuses on providing a smooth user experience and scalable backend architecture.
 
-## React Compiler
+**Live Project:** Paw Mart Live Link : https://sprightly-caramel-e0e172.netlify.app/
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🛠 Technologies Used
+- **Frontend:** React.js, HTML5, CSS3, JavaScript  
+- **Backend:** Node.js, Express.js  
+- **Database:** MongoDB  
+- **Authentication:** JWT (JSON Web Tokens)  
+- **Payment Integration:** Stripe (optional)  
+- **Deployment:** Vercel (Frontend), Render/Heroku (Backend)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# AssignmentTen
+---
+
+## ⚙ Core Features
+- User authentication (register/login/logout)  
+- Browse products by category  
+- Product search & filter functionality  
+- Add to cart & checkout functionality  
+- Admin dashboard to manage products  
+- Responsive design (mobile-first)  
+- Real-time stock update  
+
+---
+
+## 📦 Dependencies
+### Backend
+- express
+- mongoose
+- dotenv
+- cors
+
+### Frontend
+- react
+- react-router-dom
+- axios
+- react-toastify
+
