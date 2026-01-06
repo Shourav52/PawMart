@@ -19,7 +19,7 @@ const Signup = () => {
   const {signupWithEmailAndPassword, setUser, user,handleGoogleSignin}= useContext(AuthContext);
   const navigate = useNavigate();
 
-    const handleSubmit = (e)=>{
+    const handleSubmit = async (e)=>{
          e.preventDefault()
          const email = e.target.email.value;
          const pass = e.target.password.value;
@@ -38,34 +38,63 @@ const Signup = () => {
           return toast.error("Password must contain at least 1 Lowercase letter!");
         }
 
-         signupWithEmailAndPassword(email,pass)
-         .then((userCredential) =>{
-          
-          updateProfile(auth.currentUser,{
-            displayName: name , photoURL: photoUrl
-          }).then(()=>{
-               setUser(userCredential.user)
-               toast.success("Signup Successful!");
-               navigate("/");
-          }).catch((error)=>{
-               toast.error(error.message);
-          }); 
-         })
-         .catch(err=>{
-          toast.error(err.message);
-         })
-    }
+         try {
+    // 1️⃣ Firebase signup
+    const userCredential = await signupWithEmailAndPassword(email, pass);
+
+    // 2️⃣ Update profile
+    await updateProfile(auth.currentUser, {
+      displayName: name,
+      photoURL: photoUrl,
+    });
+
+    // 3️⃣ Save user to DB
+    await fetch("http://localhost:3000/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        photoURL: photoUrl,
+      }),
+    });
+
+    // 4️⃣ Set user
+    setUser(userCredential.user);
+
+    toast.success("Signup Successful!");
+    navigate("/");
+  } catch (error) {
+    toast.error(error.message);
+  }
+};
     console.log(user);
 
-     const googleSignin =()=>{
-        handleGoogleSignin()
-        .then(result=>{
-          const user = result.user
-          setUser(user)
-          toast.success("Google Signup Successful!");
-        })
-        .catch(err=> toast.error(err.message))
-      }
+     const googleSignin = async () => {
+  try {
+    const result = await handleGoogleSignin();
+    const user = result.user;
+
+    await fetch("http://localhost:3000/users", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        name: user.displayName,
+        email: user.email,
+        photoURL: user.photoURL,
+      }),
+    });
+
+    setUser(user);
+    toast.success("Google Signup Successful!");
+    navigate("/");
+  } catch (err) {
+    toast.error(err.message);
+  }
+};
+
   return (
    <div className="min-h-screen flex items-center justify-center ">
         <MyContainer className={"flex justify-center items-center gap-20 flex-col md:flex-row"}>
@@ -110,7 +139,7 @@ const Signup = () => {
               <div className='h-px w-16 bg-gray-400'></div>
            </div>
            <button onClick={googleSignin}
-            type='submit'
+            type='button'
              className='flex  bg-white text-black justify-center btn'>
               <img className='w-5' src={googleimg} alt="" />
               Continue With Google

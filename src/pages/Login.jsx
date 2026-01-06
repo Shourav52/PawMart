@@ -18,40 +18,72 @@ const Login = () => {
      const navigate = useNavigate();
      const [email, setEmail] = useState('')
      console.log(location);
-     
+     const loginUser = async (email, pass, role) => {
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, pass);
+      const user = userCredential.user;
+
+      // MongoDB এ role update
+      await fetch("http://localhost:3000/users", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          name: user.displayName || "Demo User",
+          email: user.email,
+          photoURL: user.photoURL || "",
+          role,  // role customer/admin
+        }),
+      });
+
+      setUser(user);
+      toast.success(`Logged in as ${role}!`);
+      navigate(location.state ? location.state : '/');
+    } catch (err) {
+      // toast.error(err.message);
+    }
+  };
     
      
-      const handleSubmit = (e)=>{
-       e.preventDefault();
-         const email = e.target.email.value;
-         const pass = e.target.password.value;
-       signInWithEmailAndPassword(auth, email, pass)
-       .then((userCredential)=>{
-        const user = userCredential.user;
-        console.log(user);
-        toast.success("Log in Successfully!");
-        navigate(location.state? location.state:'/')
+      const handleSubmit = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const pass = e.target.password.value;
+    loginUser(email, pass, 'customer'); // normal login defaults to customer
+  };
 
-       })
-       .catch((error)=>{
-        toast.error(error.message)
-        
-       });
-        
-      };
-      const googleSignin =()=>{
-        handleGoogleSignin()
-        .then(result=>{
-          const user = result.user
-          setUser(user)
-          toast.success("Google Login Successful!");
-          navigate(location.state? location.state:'/')
+  const demoCustomerLogin = () => {
+    const email = "demo.customer@example.com";
+    const pass = "Demo123"; // set a demo password in Firebase
+    loginUser(email, pass, 'customer');
+  };
 
+  const demoAdminLogin = () => {
+    const email = "demo.admin@example.com";
+    const pass = "Admin123"; // set a demo password in Firebase
+    loginUser(email, pass, 'admin');
+  };
+      const googleSignin = async () => {
+  try {
+    const result = await handleGoogleSignin();
+    const user = result.user;
 
-        })
-        .catch(err=> toast.error(err.message)
-)
-      }
+    await fetch("http://localhost:3000/users", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        name: user.displayName,
+        email: user.email,
+        photoURL: user.photoURL,
+      }),
+    });
+
+    setUser(user);
+    toast.success("Google Signup Successful!");
+    navigate("/");
+  } catch (err) {
+    toast.error(err.message);
+  }
+};
 
       const handleForget =()=>{
          navigate(`/forget/${email}`)
@@ -97,6 +129,19 @@ const Login = () => {
            hover:bg-blue-600 transition   mt-3 '>
               Login
             </button>
+
+            <div className='mt-4 flex flex-col gap-2'>
+            <button
+              onClick={demoCustomerLogin}
+              className='bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition'>
+              Demo Customer Login
+            </button>
+            <button
+              onClick={demoAdminLogin}
+              className='bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition'>
+              Demo Admin Login
+            </button>
+          </div>
            <div className='flex justify-center place-items-center gap-2 my-4'>
               <div className='h-px w-16 bg-gray-400'></div>
               <span className='text-sm text-gray-300'>or</span>
