@@ -102,7 +102,7 @@ const MyListing = () => {
         <td className='text-gray-500'><p>{service?.price}</p></td>
         <th className='flex gap-3 mt-6'>
           <button onClick={()=>handleDelete(service._id)} className="btn btn-error btn-xs mb-2">Delete</button>
-         <Link to={`/update-listing/${service?._id}`}>
+         <Link to={`/dashboard/update-listing/${service?._id}`}>
             <button className="btn btn-primary btn-xs">Edit</button>
          </Link>
         </th>
@@ -118,4 +118,4 @@ const MyListing = () => {
   )
 }
 
-export default MyListing
+export default MyListing;

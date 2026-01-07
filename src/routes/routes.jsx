@@ -13,6 +13,11 @@ import MyListing from "../pages/MyListing";
 import UpdateListing from "../pages/UpdateListing";
 import SuppliesDetails from "../pages/SuppliesDetails";
 import AddListing from "../pages/AddListing";
+import DeshboardLayout from "../layout/DeshboardLayout";
+import DeshboardHome from "../pages/DeshboardHome";
+import ManageServices from "../pages/ManageServices";
+import ManageUsers from "../pages/ManageUsers";
+import AllOrder from "../pages/AllOrder";
 
 
 export    const router = createBrowserRouter([
@@ -67,7 +72,52 @@ export    const router = createBrowserRouter([
                element:<PrivateRoute><MyOrders></MyOrders></PrivateRoute>
              }
         ]
-    }           
+    },
+    {
+        path: "/",
+        element: <PrivateRoute><DeshboardLayout />
+        </PrivateRoute>,
+        errorElement: <Error />,
+        children: [
+            {
+                path: "/dashboard",
+                element: <DeshboardHome />,
+            },
+            {
+                path: "/dashboard/myProfile",
+                element: <MyProfile />,
+            },
+          
+            {
+               path: '/dashboard/mylisting',
+               element: <MyListing />
+            },
+            {
+               path: '/dashboard/add-listing',
+               element: <AddListing></AddListing>
+            },
+            {
+               path: '/dashboard/update-listing/:id',
+               element: <UpdateListing />
+            },
+            {
+               path: '/dashboard/myorders',
+               element: <MyOrders />
+            },
+            {
+               path: '/dashboard/manage-services',
+               element: <ManageServices />
+            },
+            {
+               path: '/dashboard/manage-users',
+               element: <ManageUsers></ManageUsers>
+            },
+            {
+               path: '/dashboard/all-orders',
+               element: <AllOrder></AllOrder>
+            },
+        ]
+    }            
 ]    
 ) ;
 
