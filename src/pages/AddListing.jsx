@@ -64,8 +64,8 @@ const AddListing = () => {
 
 
   return (
-    <div className="max-w-xl mx-auto p-6 bg-gradient-to-br from-blue-50 to-blue-100 shadow-xl rounded-2xl mt-6 mb-10">
-      <h2 className="text-2xl font-semibold mb-4">Add Product / Pet</h2>
+    <div className="max-w-xl mx-auto p-6 bg-gradient-to-br  shadow-xl rounded-2xl mt-6 mb-10">
+      <h2 className="text-3xl bg-gradient-to-r from-blue-500 to-indigo-600 bg-clip-text text-transparent text-center font-semibold mb-4">Add Product / Pet</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         
         <div>

@@ -9,7 +9,7 @@ const TipsSection = () => {
   return (
     <div>
         <div className='text-center text-3xl font-semibold text-white mb-10 w-full mt-10'>
-            <h1 className='bg-gradient-to-r from-blue-500 to-indigo-600 bg-clip-text text-transparent font-semibold'>Why Adopt from PawMart?</h1>
+            <h1 className='pl-10 pr-10 bg-gradient-to-r from-blue-500 to-indigo-600 bg-clip-text text-transparent font-semibold'>Why Adopt from PawMart?</h1>
         </div>
         <MyContainer>
             <div className='flex flex-col lg:flex-row justify-between gap-6 space-y-5 p-10 lg:p-0'>

@@ -21,7 +21,18 @@ const ExpartSection = () => {
             <p>Winter Dermatology & Paw Care</p>
             <p>3 Years Exp.</p>
             <div className="card-actions justify-end">
-              <button className="btn btn-primary">Book Appointment</button>
+<button
+  className="
+    btn btn-primary
+    w-full sm:w-auto
+    text-sm sm:text-base
+    px-4 sm:px-6
+    transition-all duration-200
+    hover:scale-105
+  "
+>
+  Book Appointment
+</button>
             </div>
           </div>
         </div>
@@ -36,7 +47,18 @@ const ExpartSection = () => {
             <p>Winter Dermatology & Pet Caregivers </p>
             <p>8 Years Exp.</p>
             <div className="card-actions justify-end">
-              <button className="btn btn-primary">Book Appointment</button>
+<button
+  className="
+    btn btn-primary
+    w-full sm:w-auto
+    text-sm sm:text-base
+    px-4 sm:px-6
+    transition-all duration-200
+    hover:scale-105
+  "
+>
+  Book Appointment
+</button>
             </div>
           </div>
         </div>
@@ -49,8 +71,20 @@ const ExpartSection = () => {
             <h2 className="card-title">Dr.Alica Snow</h2>
             <p>Trainer & Pats Care</p>
             <p>10 Years Exp.</p>
-            <div className="card-actions justify-end">
-              <button className="btn btn-primary">Book Appointment</button>
+            <div className="card-actions  justify-end">
+              <button
+  className="
+    btn btn-primary
+    w-full sm:w-auto
+    text-sm sm:text-base
+    px-4 sm:px-6
+    transition-all duration-200
+    hover:scale-105
+  "
+>
+  Book Appointment
+</button>
+
             </div>
           </div>
         </div>

@@ -18,6 +18,10 @@ import DeshboardHome from "../pages/DeshboardHome";
 import ManageServices from "../pages/ManageServices";
 import ManageUsers from "../pages/ManageUsers";
 import AllOrder from "../pages/AllOrder";
+import Contact from "../pages/Contact";
+import Blog from "../pages/Blog";
+import Support from "../pages/Support";
+import Privacy from "../pages/Privacy";
 
 
 export    const router = createBrowserRouter([
@@ -49,28 +53,28 @@ export    const router = createBrowserRouter([
              },
              {
                 path:"/details/:id",
-                element: <PrivateRoute><SuppliesDetails></SuppliesDetails></PrivateRoute>,
+                element:<SuppliesDetails></SuppliesDetails>,
              },
              {
                path:'/forget/:email',
                element: <ForgetPass></ForgetPass>
              },
              {
-               path:'/add-listing',
-               element:<PrivateRoute><AddListing></AddListing></PrivateRoute>
+               path:'/contact',
+               element: <Contact></Contact>
              },
              {
-               path:'/mylisting',
-               element: <PrivateRoute><MyListing></MyListing></PrivateRoute>
+               path:'/blog',
+               element: <Blog></Blog>
              },
              {
-               path:'/update-listing/:id',
-               element:<PrivateRoute><UpdateListing></UpdateListing></PrivateRoute>
+               path:'/support',
+               element: <Support></Support>
              },
              {
-               path:'/myorders',
-               element:<PrivateRoute><MyOrders></MyOrders></PrivateRoute>
-             }
+               path:'/privacy',
+               element: <Privacy></Privacy>
+             },
         ]
     },
     {

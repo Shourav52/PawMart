@@ -56,7 +56,7 @@ const SuppliesDetails = () => {
 
   return (
     <div className='flex flex-col items-center mt-10 justify-center'>
-        <h1 className=' text-3xl font-semibold mb-5'>Service details</h1>
+        <h1 className='bg-gradient-to-r from-blue-500 to-indigo-600 bg-clip-text text-transparent  text-3xl font-semibold mb-5'>Service details</h1>
       <div className="space-y-2 p-10 rounded-2xl">
          <div className="max-w-[700px] bg-white p-5 rounded-lg shadow-md  ">
           <img className='w-full rounded-md ' src={service?.image} alt="" />

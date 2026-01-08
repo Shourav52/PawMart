@@ -60,13 +60,14 @@ const MyListing = () => {
   }
 
   return (
-    <div className='mb-15'>
+    <div className='mb-15 mt-8'>
+      <h1 className='mb-6 text-center text-3xl font-semibold bg-gradient-to-r from-blue-500 to-indigo-600 bg-clip-text text-transparent'>My Listing</h1>
       {loading ? (
           <div className='flex justify-center items-center h-64'>
             <span className="loading loading-spinner loading-xl"></span>
           </div>
         ) :(       <MyContainer>
-      <div className="overflow-x-auto text-white">
+      <div className="hidden md:block overflow-x-auto text-white">
   <table className="table">
     <thead className=''>
       <tr>
@@ -81,7 +82,7 @@ const MyListing = () => {
        { 
         myservices?.map(service=>
      <tr >
-      
+
         <td>
           <div className="flex items-center gap-3">
             <div className="avatar">
@@ -112,6 +113,51 @@ const MyListing = () => {
     </tbody>
   </table>
 </div>
+
+
+<div className="block md:hidden space-y-4">
+        {myservices.map(service => (
+          <div
+            key={service._id}
+            className="bg-white rounded-xl shadow p-4 flex gap-4"
+          >
+            <img
+              src={service?.image}
+              alt=""
+              className="w-20 h-20 rounded-lg object-cover"
+            />
+
+            <div className="flex-1">
+              <h3 className="font-bold text-gray-800">
+                {service?.name}
+              </h3>
+              <p className="text-sm text-gray-500">
+                Category: {service?.category}
+              </p>
+              <p className="text-sm text-gray-500">
+                Price: ${service?.price}
+              </p>
+
+              <div className="flex justify-between gap-2 mt-3">
+                <Link to={`/dashboard/update-listing/${service?._id}`}>
+                  <button className="btn btn-primary btn-xs">
+                    Edit
+                  </button>
+                </Link>
+                <button
+                  onClick={() => handleDelete(service._id)}
+                  className="btn btn-error btn-xs"
+                >
+                  Delete
+                </button>
+                
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+
 </MyContainer>)}
 
     </div>

@@ -5,7 +5,7 @@ import tlogo from '../assets/tlogo.jpeg'
 const Footer = () => {
   return (
 
-    <div className='mt-30'>
+    <div className=''>
       <footer className="footer sm:footer-horizontal bg-neutral text-neutral-content p-10">
         <aside>
           <svg
@@ -60,8 +60,8 @@ const Footer = () => {
           </div>
           <div className='flex flex-col gap-2 mt-4 cursor-pointer text-[16px] ml-4'>
             <li><Link to={"/"}>Home</Link></li>
-            <li><a href="">Contact</a></li>
-            <li><a href="">Terms</a></li>
+            <li><Link to={'/contact'}>contact</Link></li>
+            <li><Link to={'/privacy'}>Privacy</Link></li>
           </div>
         </nav>
       </footer>

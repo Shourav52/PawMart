@@ -1,11 +1,20 @@
-import React from 'react'
+import React, { useContext } from 'react';
+import { AuthContext } from '../Provider/AuthProvider';
+import CustomerHome from './CustomerHome';
+import AdminHome from './AdminHome';
 
-const DeshboardHome = () => {
+
+
+const DashboardHome = () => {
+  const { role } = useContext(AuthContext); // get role from AuthContext
+
   return (
-    <div>
-      Deshboard Home
+    <div className="p-6">
+      {role === 'admin' && <AdminHome></AdminHome>}
+      {role === 'customer' && <CustomerHome />}
+      {!role && <p className="text-gray-500">Loading...</p>}
     </div>
-  )
-}
+  );
+};
 
-export default DeshboardHome
+export default DashboardHome;

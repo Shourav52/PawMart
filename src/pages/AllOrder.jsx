@@ -42,7 +42,7 @@ const AllOrders = () => {
 
   return (
     <div className="p-4 md:p-6">
-      <h2 className="text-2xl font-bold mb-6 text-blue-600">
+      <h2 className="text-2xl text-center font-bold mb-6 text-blue-600">
         All Orders
       </h2>
 

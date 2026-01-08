@@ -43,6 +43,8 @@ const ManageServices = () => {
   }
 
   return (
+     <div className="mt-8">
+            <h1 className="text-center text-2xl font-bold text-blue-700 mb-4">All Services</h1>
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-4">
       {services.map(service => (
         <div
@@ -80,6 +82,7 @@ const ManageServices = () => {
           </div>
         </div>
       ))}
+    </div>
     </div>
   );
 };
